@@ -20,5 +20,10 @@ if df is not None and not df.empty and "Close" in df.columns:
     signal = generate_real_signal(selected_market)
     st.subheader(f"🚨 Signal für {selected_market}:")
     st.success(signal)
+rsi_signal = generate_rsi_signal(selected_market)
+st.subheader("📊 RSI-Analyse")
+st.info(rsi_signal)
+
 else:
     st.error("❌ Keine Daten für Gold gefunden. Bitte später erneut versuchen.")
+from signal_engine import generate_real_signal, get_price_data, generate_rsi_signal
