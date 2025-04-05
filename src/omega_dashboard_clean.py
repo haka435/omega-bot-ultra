@@ -10,7 +10,8 @@ selected_market = st.selectbox("Wähle einen Markt", ["BTC-USD", "ETH-USD"])
 # Daten laden
 df = get_price_data(selected_market)
 st.subheader(f"📊 Chart für {selected_market}")
-fig = px.line(df, x=df.index, y="Close", title="Kursverlauf")
+fig = px.line(df, x=df.index, y="close", title="kursverlauf")
+
 st.plotly_chart(fig, use_container_width=True)
 
 # Signal anzeigen
