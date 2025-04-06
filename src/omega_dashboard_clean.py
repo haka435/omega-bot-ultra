@@ -12,9 +12,9 @@ selected_market = st.selectbox("Wähle einen Markt", ["BTC-USD", "GC=F"])
 df = get_price_data(selected_market)
 
 # Wenn Daten gültig sind
-if df is not None and not df.empty and "Close" in df.columns:
+if df is not None and not df.empty and "Close" in df.columns and df["Close"].dropna().size > 0:
     st.subheader(f"📈 Chart für {selected_market}")
-    fig = px.line(df, x=df.index, y="Close", title=f"Kursverlauf ({selected_market})")
+    fig = px.line(df.reset_index(), x="Date", y="Close", title=f"Kursverlauf ({selected_market})")
     st.plotly_chart(fig, use_container_width=True)
 
     # Signal anzeigen
@@ -22,4 +22,4 @@ if df is not None and not df.empty and "Close" in df.columns:
     st.subheader(f"🧠 RSI Signal für {selected_market}:")
     st.success(signal)
 else:
-    st.error(f"❌ Keine gültigen Daten für {selected_market} gefunden. Vielleicht ist die Börse gerade geschlossen?")
+    st.error(f"❌ Keine gültigen Daten für {selected_market} gefunden. Vielleicht ist die Börse geschlossen oder YFinance liefert gerade nichts zurück.")
