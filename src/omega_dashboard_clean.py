@@ -14,7 +14,7 @@ df = get_price_data(selected_market)
 
 # Spaltennamen vereinheitlichen (kleinschreiben)
 if df is not None:
-    df.columns = [col.lower() for col in df.columns]
+    df.columns = [col[0].lower() if isinstance(col, tuple) else col.lower() for col in df.columns]
 
 # Wenn Daten vorhanden & gültig
 if df is not None and not df.empty and "close" in df.columns and df["close"].dropna().size > 0:
