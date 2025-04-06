@@ -1,4 +1,4 @@
 streamlit
 yfinance
-Pandas
-Handlung  ⛔️ (fehlerhaft)
+pandas
+plotly
